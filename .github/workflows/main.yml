@@ -10,13 +10,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Get latest code
-          uses: actions/checkout@v6
+          uses: actions/checkout@v4
 
         - name: Sync files
-          uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+          uses: appleboy/scp-action@v0.1.7
           with:
-            server: ${{secrets.FTP_HOST}}
-            username: ${{secrets.FTP_USERNAME}}
-            password: ${{secrets.FTP_PASSWORD}}
-            protocol: ftp
-            server-dir: /var/www/html/bazylipiotr/
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            password: ${{ secrets.SSH_PASSWORD }}
+            port: 6669
+            source: "./*"
+            target: /var/www/html/bazylipiotr/
