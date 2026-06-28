@@ -10,14 +10,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Get latest code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v5
 
         - name: Sync files
           uses: appleboy/scp-action@v0.1.7
           with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USERNAME }}
-            password: ${{ secrets.SSH_PASSWORD }}
+            host: ${{ secrets.FTP_HOST }}
+            username: ${{ secrets.FTP_USERNAME }}
+            password: ${{ secrets.FTP_PASSWORD }}
             port: 6669
             source: "./*"
             target: /var/www/html/bazylipiotr/
